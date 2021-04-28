@@ -1,0 +1,233 @@
+.password {
+    --svg-color: #808390;
+    --text-color: #414856;
+    --weak-color: #f04545;
+    --medium-color: #ffa850;
+    --strong-color: #47c796;
+    --width: 180px;
+    --height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .password input {
+    background: none;
+    border: 0;
+    outline: none;
+    width: 22px;
+    height: var(--height);
+    z-index: 1;
+    position: relative;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    transition: all 0.6s ease-out;
+    cursor: pointer;
+    color: var(--text-color);
+    font: 400 14px "Poppins", sans-serif;
+  }
+  .password .check {
+    display: none;
+    width: var(--height);
+    height: var(--height);
+    padding: 5px 2px 5px 8px;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    z-index: 3;
+    cursor: pointer;
+  }
+  .password .check svg {
+    fill: none;
+    stroke: var(--strong-color);
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dashoffset: 26;
+    stroke-dasharray: 26;
+    transition: stroke-dashoffset 0.6s ease;
+  }
+  .password .lock {
+    width: 180px;
+    height: var(--height);
+    position: absolute;
+    right: 0;
+  }
+  .password .lock::before, .password .lock::after {
+    content: "";
+    position: absolute;
+    background: var(--svg-color);
+    pointer-events: none;
+  }
+  .password .lock::before {
+    right: 8px;
+    bottom: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: bottom 0.2s ease-out 0.4s, right 0.4s ease-out;
+  }
+  .password .lock::after {
+    right: 10px;
+    bottom: 5px;
+    width: 2px;
+    height: 10px;
+    border-radius: 2px;
+    transition: bottom 0.4s ease-out 0.4s, border-radius 0.2s ease-out 0.4s, width 0.2s ease-out 0.4s, right 0.4s ease-out, height 0.4s ease 0.8s;
+  }
+  .password .lock svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+    fill: none;
+    stroke: var(--svg-color);
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dashoffset: 263;
+    stroke-dasharray: 0 263 71 263;
+    transition: all 0.6s ease-out;
+  }
+  .password.active input {
+    width: var(--width);
+    padding: 0 var(--height) 0 5px;
+    cursor: text;
+    box-sizing: border-box;
+  }
+  .password.active .check {
+    display: flex;
+  }
+  .password.active .check.submit svg {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 26;
+  }
+  .password.active .check.submit ~ .lock::before, .password.active .check.submit ~ .lock::after {
+    opacity: 0;
+    right: 9px;
+    transition: right 0.2s ease-out, opacity 0.2s ease-out;
+  }
+  .password.active .check.active ~ .lock::before {
+    -webkit-animation: wink-animation 0.6s linear alternate;
+            animation: wink-animation 0.6s linear alternate;
+    background: var(--medium-color);
+  }
+  .password.active .check.active ~ .lock::after {
+    -webkit-animation: wink-animation 0.6s linear alternate;
+            animation: wink-animation 0.6s linear alternate;
+    background: var(--medium-color);
+  }
+  .password.active .lock::before {
+    right: 3px;
+    bottom: 11px;
+    transition: bottom 0.1s ease-out 0.1s, right 0.4s ease-out 0.2s, background 0.2s ease-out, opacity 0.2s ease-out;
+  }
+  .password.active .lock::after {
+    right: 15px;
+    bottom: 11px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: height 0.2s ease-out, bottom 0.2s ease-out, border-radius 0.2s ease-out 0.2s, width 0.2s ease-out 0.2s, right 0.4s ease-out 0.2s, background 0.2s ease-out, opacity 0.2s ease-out;
+  }
+  .password.active .lock svg {
+    stroke-dashoffset: 207;
+    stroke-dasharray: 0 263 177 263;
+  }
+  .password.active .indicator {
+    width: 180px;
+    height: var(--height);
+    position: absolute;
+    right: 0;
+  }
+  .password.active .indicator::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    border-radius: 5px;
+    background: transparent;
+    z-index: 3;
+    transition: background 0.6s ease-out, width 0.6s ease-out;
+  }
+  .password.active .indicator.weak::before {
+    width: 33.3%;
+    background: var(--weak-color);
+  }
+  .password.active .indicator.medium::before {
+    width: 66.6%;
+    background: var(--medium-color);
+  }
+  .password.active .indicator.strong::before {
+    width: 100%;
+    background: var(--strong-color);
+  }
+  
+  @-webkit-keyframes wink-animation {
+    0% {
+      height: 6px;
+    }
+    10% {
+      height: 1px;
+    }
+    20% {
+      height: 6px;
+    }
+    80% {
+      height: 6px;
+    }
+    90% {
+      height: 1px;
+    }
+    100% {
+      height: 6px;
+    }
+  }
+  
+  @keyframes wink-animation {
+    0% {
+      height: 6px;
+    }
+    10% {
+      height: 1px;
+    }
+    20% {
+      height: 6px;
+    }
+    80% {
+      height: 6px;
+    }
+    90% {
+      height: 1px;
+    }
+    100% {
+      height: 6px;
+    }
+  }
+  body {
+    background: #e8ebf3;
+    height: 100vh;
+    font: 400 16px "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body .socials {
+    position: fixed;
+    display: block;
+    left: 20px;
+    bottom: 20px;
+  }
+  body .socials > a {
+    display: block;
+    width: 30px;
+    opacity: var(--opacity, 0.2);
+    transform: scale(var(--scale, 0.8));
+    transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+  }
+  body .socials > a:hover {
+    --scale: 1;
+  }
